@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Flask</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+   <!-- Tema de Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+
+    <!--usamos fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class ="container p-4">
+        <h1 class="titulo display-4 text-center mt-4"> APP DE GESTIÓN DE TAREAS</h1>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-4 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <div class="card"> <!--Creacion del objeto card-->
+                    <div class="card-header">
+                        <form action="/crear-tarea" method="post"> <!--le decimos que se conecte con nuestro endpoint creado en el main-->
+                         <!-- Separamos el input del boton metiendo el input en este form-group
+                        para que los elementos no esten pegados y haya separacion entre ellos -->
+                            <div class="form-group">
+                                <input type="text" name="contenido_tarea" placeholder="Añade tu nueva tarea" class="form-control" autofocus>
+                             </div>
+                            <div>
+                                <input type="date" name="fecha_limite" placeholder="dd/mm/aa" class="form-control">
+                            </div>
+                             <button type="submit" class="btn btn-primary btn-block"> <!-- btn-block
+                            hace que el boton ocupe todo el ancho -->
+                             Guardar
+                             </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for tarea in lista_de_tareas %}
+                            <li class="list-group-item">
+                                <span class="{%if tarea.hecha==true%} tarea_hecha{%endif%}">
+                                {{ tarea.contenido }}</span>
+                                <a href="/tarea-hecha/{{tarea.id}}" style="=text-decoration:none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="green" class="bi bi-check2-square" viewBox="0 0 16 16">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+</svg></a>
+                                <a href="/eliminar-tarea/{{tarea.id}}" style="=text-decoration:none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+</svg></a>
+                                <span class="{%if tarea.hecha==true%} tarea_hecha{%endif%}">
+                                {{ tarea.fecha }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

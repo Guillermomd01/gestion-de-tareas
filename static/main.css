@@ -1,0 +1,18 @@
+/* Para recargar la pagina sin tener en cuanta la cache
+control+shift+r */
+
+.titulo {
+  font-family: "Permanent Marker", cursive;
+}
+/*Los estilos que queramos usar a nivel global la podemos meter dentro de la etiqueta body*/
+body{
+    background: #FFEFBA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+.tarea_hecha{
+    text-decoration: line-through;
+    color: #cfcfcf;
+}
